@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit';
+    color: $color-black;
+}
+
+a{
+    text-decoration: none;
+    color: $color-black;
+}
+
+ol, ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: $color-black;
+}
+p, h1, h2, h3, h4, h5, h6{
+    margin: 0;
+    padding: 0;
+}
+
+input, button{
+    outline: none;
+    border: none;
+    background: transparent;
+}
