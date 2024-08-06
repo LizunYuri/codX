@@ -14,21 +14,18 @@ $color-white: rgba(255, 255, 255, 1);
     font-size: 13px;
     font-weight: 400;
     line-height: 14px;
-    letter-spacing: 0.47999998927116394px;
 }
 
 @mixin text-64{
     font-size: 64px;
     font-weight: 400;
     line-height: 64px;
-    letter-spacing: 0.47999998927116394px;
 }
 
 @mixin text-paragraph{
     font-size: 17px;
     font-weight: 400;
     line-height: 26px;
-    letter-spacing: 0.47999998927116394px;
     text-align: left;
     
 }
