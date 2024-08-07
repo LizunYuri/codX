@@ -1,17 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const dot = document.querySelector('.dot');
-    const speed = 200; // скорость движения точки
-    let x = 0;
-    let y = window.innerHeight / 2;
+window.addEventListener('load', function() {
+    const galleryContent = document.querySelector('.gallery-content');
+    const gallery = document.querySelector('.gallery');
+    const galleryWidth = galleryContent.offsetWidth;
+    const firstImageWidth = galleryContent.querySelector('.gallery-img').offsetWidth;
 
-    function moveDot() {
-        x += speed;
-        if (x > window.innerWidth) {
-            x = -20; // точка выходит за левую границу экрана
+
+    
+    const images = galleryContent.innerHTML;
+    galleryContent.innerHTML += images;
+
+    let start = 0;
+    let end = galleryWidth / 2;
+    let animationFrame;
+
+    function scrollGallery() {
+        start -= 1;
+        galleryContent.style.transform = `translateX(${start}px)`;
+
+        if (Math.abs(start) >= end) {
+            start = 0;
         }
-        dot.style.transform = `translate(${x}px, ${y}px)`;
-        requestAnimationFrame(moveDot);
+
+        animationFrame = requestAnimationFrame(scrollGallery);
     }
 
-    moveDot();
+    // Start the scrolling animation
+    scrollGallery();
+
+    // Stop the scrolling animation on mouse over
+    gallery.addEventListener('mouseover', function() {
+        cancelAnimationFrame(animationFrame);
+    });
+
+    // Resume the scrolling animation on mouse out
+    gallery.addEventListener('mouseout', function() {
+        scrollGallery();
+    });
 });

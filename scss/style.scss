@@ -18,6 +18,7 @@
 
 @import 'variables';
 @import 'reset';
+@import 'navHoverEffect';
 
 .row{
     justify-content: center;
@@ -38,10 +39,11 @@
         @include block-line-center;
         &>ul{
             display: flex;
-            &>li>a{
-                padding-left: 68px;
+            &>li{
+                margin-left: 68px;
+                &>a{
                 font-weight: 400 ;
-            }
+            }}
         }
     }
     &-view{
@@ -102,6 +104,7 @@
         height: 325px;
         position: absolute;
         left: 21px;
+        z-index: 3;
         cursor: pointer;
         img{
             width: 100%;
@@ -144,6 +147,7 @@
     height: 410px;
     top: 100px;
     left: 190px;
+    z-index: 4;
     &> .profile{
         width: 159px;
         height: 55px;
@@ -170,20 +174,33 @@
 .gallery{
     margin-top: 43px;
     width: 100%;
-
-    display: flex;
     overflow: hidden;
+    display: flex;
+
+    &-content{
+        display: flex;
+        box-sizing: content-box;
+        animation: scroll 20s linear infinite;
+    }
     &-img{
-        width: 152px;
-        height: 152px;
-        transition: all .5s ease;
+        
+        flex-shrink: 0;
+        transition: transform 0.5s ease, all 0.5s ease;
+        &:hover{
+            transform: scale(1.2);
+            z-index: 99;
+            overflow: visible;
+        }
         img{
-            width: 100%;
-            height: 100%;
+            width: 152px;
+        height: 152px;
             object-fit: cover;
             }
     }   
 }
+
+
+
 
 .hey{
     margin-top: 43px;
@@ -575,9 +592,10 @@
             width: 1072px;
             &-question{
                 width: 100%;
-                height: 101px;
+                // 
                 
                 &-title{
+                    height: 101px;
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
@@ -591,9 +609,12 @@
                     }
                 }
                 &-text{
-                    margin-top: 25px;
-                    margin-bottom: 45px;
-                    display: none;
+                    padding-top: 25px;
+                    transition: all .5s ease;
+                    padding-bottom: 45px;
+                    border-radius: 20px;
+                    background: rgba(0, 0, 0, 0.03);
+                    box-shadow: 0px -4px 19px 0px rgba(0, 0, 0, 0.03);
                     p{
                         font-size: 18px;
                         font-weight: 400;
@@ -606,11 +627,37 @@
         } 
     }
 }
+.display-none{
+    display: none;
+}
+
+.display-block{
+    display: block;
+    animation-name: slide-in-top;
+		animation-duration: .2s;
+		animation-timing-function: linear;
+		animation-delay: 0s;
+		animation-iteration-count: 1;
+		animation-direction: normal;
+		animation-fill-mode: none;
+}
 
 .triangle{
     width: 28px;
     height: 17px;
     position: relative;  
+    transform-origin: center;
+    transition: all .2s ease;
+}
+.triangle-rotate{
+    animation-name: rotate-center;
+		animation-duration: .2s;
+		animation-timing-function: linear;
+		animation-delay: 0s;
+		animation-iteration-count: 1;
+		animation-direction: normal;
+		animation-fill-mode: none;
+        transform:rotate(180deg);
 }
 
 .triangle-left, .triangle-right{
@@ -618,7 +665,7 @@
     height: 3px;
     background: $color-green;
     position: absolute;
-    
+    transform-origin: center;
 }
 
 .triangle-left{
@@ -725,3 +772,28 @@
         }
     }
 }
+
+	@keyframes rotate-center {
+			
+		0% {
+			transform:rotate(0);
+		}
+		100% {
+			transform:rotate(180deg);
+		}
+	}
+
+    @keyframes slide-in-top {
+			
+		0% {
+			transform:translateY(-40px);
+			opacity:0;
+		}
+        70%{
+            opacity: 0;
+        }
+		100% {
+			transform:translateY(0);
+			opacity:1;
+		}
+    }
